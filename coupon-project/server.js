@@ -60,23 +60,23 @@ app.get('/api/roll-numbers', (req, res) => {
   
 // DELETE endpoint to remove a roll number
 app.delete('/api/roll-numbers/:id', (req, res) => {
-    const { id } = req.params;
-    console.log('Deleting record with id:', id); // Debug log
-  
-    const query = 'DELETE FROM roll_numbers WHERE id = ?';
-    connection.query(query, [id], (err, results) => {
-      if (err) {
-        console.error('Error executing DELETE query:', err);
-        return res.status(500).json({ message: 'Database error.', error: err });
-      }
-      if (results.affectedRows === 0) {
-        console.error('No roll number found with id:', id);
-        return res.status(404).json({ message: 'Roll number not found.' });
-      }
-      res.json({ message: 'Roll number deleted successfully.' });
-    });
+  const { id } = req.params;
+  console.log('Deleting record with id:', id); // Debug log
+
+  const query = 'DELETE FROM roll_numbers WHERE id = ?';
+  connection.query(query, [id], (err, results) => {
+    if (err) {
+      console.error('Error executing DELETE query:', err);
+      return res.status(500).json({ message: 'Database error.', error: err });
+    }
+    if (results.affectedRows === 0) {
+      console.error('No roll number found with id:', id);
+      return res.status(404).json({ message: 'Roll number not found.' });
+    }
+    res.json({ message: 'Roll number deleted successfully.' });
   });
-  
+});
+
   
 // Start the server
 app.listen(port, '0.0.0.0', () => {

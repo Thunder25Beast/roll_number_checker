@@ -10,7 +10,7 @@ function App() {
   // Function to fetch roll numbers from the backend
   const fetchRollNumbers = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/roll-numbers');
+      const response = await fetch('http://192.168.0.101:5000/api/roll-numbers');
       const data = await response.json();
       setRollNumbers(data);
     } catch (error) {
@@ -27,7 +27,7 @@ function App() {
     if (!rollNumber) return;
 
     try {
-      const response = await fetch('http://localhost:5000/api/roll-numbers', {
+      const response = await fetch('http://192.168.0.101:5000/api/roll-numbers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ function App() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/roll-numbers/${id}`, {
+      const response = await fetch(`http://192.168.0.101:5000/api/roll-numbers/${id}`, {
         method: 'DELETE',
       });
       const result = await response.json();
